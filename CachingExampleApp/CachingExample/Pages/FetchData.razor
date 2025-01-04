@@ -1,9 +1,23 @@
 ﻿@page "/fetchdata"
+@inject SampleDataAccess sampleDataAccess
 
 <PageTitle>Employee Directory</PageTitle>
 
 <h1>Employee Directory</h1>
 
+@if(employees is not null)
+{
+    @foreach(var employee in employees)
+    {
+        <h3>@employee.FirstName @employee.LastName</h3>
+    }
+}
+
 @code {
-    
+    List<EmployeeModel> employees;
+
+    protected override void OnInitialized()
+    {
+        employees = sampleDataAccess.GetEmployees();
+    }
 }
