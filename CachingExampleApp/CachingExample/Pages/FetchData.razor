@@ -12,12 +12,21 @@
         <h3>@employee.FirstName @employee.LastName</h3>
     }
 }
+else
+{
+    <h3>Loading...</h3>
+}
 
 @code {
     List<EmployeeModel> employees;
 
-    protected override void OnInitialized()
+    // protected override void OnInitialized()
+    // {
+    //     employees = sampleDataAccess.GetEmployees();
+    // }
+
+    protected override async Task OnInitializedAsync()
     {
-        employees = sampleDataAccess.GetEmployees();
+        employees = await sampleDataAccess.GetEmployeesAsync();
     }
 }
